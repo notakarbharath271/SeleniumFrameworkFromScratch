@@ -33,7 +33,7 @@ public final class ReadPropertiesFile {
 			}
 			*/
 			// or using lambda expression
-			prop.entrySet().forEach(entry -> CONFIGMAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue())));
+			prop.entrySet().forEach(entry -> CONFIGMAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()).trim()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
