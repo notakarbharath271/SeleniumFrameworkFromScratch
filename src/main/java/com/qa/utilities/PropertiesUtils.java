@@ -8,13 +8,14 @@ import java.util.Objects;
 import java.util.Properties;
 
 import com.qa.constants.FrameworkConstants;
+import com.qa.enums.ConfigProperties;
 
-public final class ReadPropertiesFile {
+public final class PropertiesUtils {
 
 	private static Properties prop = new Properties();
 	private final static Map<String, String> CONFIGMAP = new HashMap<>();
 
-	private ReadPropertiesFile() {
+	private PropertiesUtils() {
 	}
 
 	static {
@@ -41,20 +42,20 @@ public final class ReadPropertiesFile {
 
 	}
 	//HashMap method
-	public static String getPropertyValueByHashMap(String key) throws Exception {
-		if(Objects.isNull(key)||Objects.isNull(CONFIGMAP.get(key))) {
+	public static String getPropertyValueByHashMap(ConfigProperties key) throws Exception {
+		if(Objects.isNull(key)||Objects.isNull(CONFIGMAP.get(key.name().toLowerCase()))) {
 			throw new Exception("Property name " + key + " is not found. Please check config.properties file");
 		}
-		return CONFIGMAP.get(key);
+		return CONFIGMAP.get(key.name().toLowerCase());
 	}
 //normal method
-	public static String getPropertyValue(String key) throws Exception {
+	public static String getPropertyValue(ConfigProperties key) throws Exception {
 
-		if (Objects.isNull(prop.getProperty(key)) || Objects.isNull(key)) {
+		if (Objects.isNull(prop.getProperty(key.name().toLowerCase())) || Objects.isNull(key)) {
 			throw new Exception("Property name " + key + " is not found. Please check config.properties file");
 		}
 
-		return prop.getProperty(key);
+		return prop.getProperty(key.name().toLowerCase());
 	}
 
 }
