@@ -2,6 +2,8 @@ package com.qa.pages;
 
 import org.openqa.selenium.By;
 
+import com.qa.enums.WaitStrategy;
+
 public final class OrangeHRMLoginPage extends BasePage {
 
 	/*
@@ -12,17 +14,17 @@ public final class OrangeHRMLoginPage extends BasePage {
 	private final By loginButton = By.xpath("//button[@type='submit']");
 
 	public OrangeHRMLoginPage enterUserName(String username) {
-		sendKeys(userNameTextbox, username, "present");
+		sendKeys(userNameTextbox, username, WaitStrategy.PRESENCE);
 		return this;
 	}
 
 	public OrangeHRMLoginPage enterPassword(String password) {
-		sendKeys(passwordTextbox, password, "present");
+		sendKeys(passwordTextbox, password, WaitStrategy.PRESENCE);
 		return this;
 	}
 
 	public OrangeHRMHomepage clickLogin() {
-		click(loginButton,"clickable");
+		click(loginButton,WaitStrategy.CLICKABLE);
 		return new OrangeHRMHomepage();
 	}
 

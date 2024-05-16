@@ -4,7 +4,8 @@ import java.util.Objects;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.qa.utilities.ReadPropertiesFile;
+import com.qa.enums.ConfigProperties;
+import com.qa.utilities.PropertiesUtils;
 
 public class Driver {
 
@@ -15,7 +16,7 @@ public class Driver {
 	public static void initDriver() throws Exception {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			DriverManager.setDriver(new ChromeDriver());
-			DriverManager.getDriver().get(ReadPropertiesFile.getPropertyValueByHashMap("url"));
+			DriverManager.getDriver().get(PropertiesUtils.getPropertyValueByHashMap(ConfigProperties.URL));
 			DriverManager.getDriver().manage().window().maximize();
 		}
 	}
