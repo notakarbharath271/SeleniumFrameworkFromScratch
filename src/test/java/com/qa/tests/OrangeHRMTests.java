@@ -1,8 +1,8 @@
 package com.qa.tests;
 
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
-import com.qa.pages.OrangeHRMHomepage;
 import com.qa.pages.OrangeHRMLoginPage;
 
 public final class OrangeHRMTests extends BaseTest{
@@ -14,10 +14,11 @@ public final class OrangeHRMTests extends BaseTest{
 	
 	@Test
 	public void LoginLogoutTest() {
-		OrangeHRMLoginPage hrmLoginPage = new OrangeHRMLoginPage();
+				
+		String titleOrangeHRM = new OrangeHRMLoginPage().enterUserName("Admin").enterPassword("admin123").clickLogin().
+		clickuUserDropdoneIcon().clickLogoutLink().getTitleOrangeHRM();
 		
-		OrangeHRMHomepage homepage = hrmLoginPage.enterUserName("Admin").enterPassword("admin123").clickLogin();
-		homepage.clickuUserDropdoneIcon().clickLogoutLink();
+		Assertions.assertThat(titleOrangeHRM).isEqualTo("OrangeHRM");
 	}
 
 }
